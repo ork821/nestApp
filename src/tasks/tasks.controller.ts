@@ -3,7 +3,6 @@ import {TasksService} from './tasks.service';
 import {Task, TaskStatus} from './tasks.model';
 import {CreateTaskDto} from './dto/create-task.dto';
 import {GetTasksFilterDto} from './dto/get-tasks-filter.dto';
-import {filter} from 'rxjs/operators';
 
 @Controller('tasks')
 export class TasksController {
