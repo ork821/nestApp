@@ -19,17 +19,10 @@ export class TasksService {
         this.tasks = this.tasks.filter(task => task.id !== id);
     }
 
-    updateStatus(id: string, status: TaskStatus): Task  {
-        let TASK = {};
-        this.tasks = this.tasks.map(task => {
-            if (task.id === id) {
-                task.status = status;
-                TASK = task;
-                return task;
-            }
-            return task;
-        });
-        return TASK as Task;
+    updateStatus(id: string, status: TaskStatus): Task {
+        const task = this.getTaskById(id);
+        task.status = status;
+        return task;
     }
 
     createTask(createTaskDto: CreateTaskDto): Task {
