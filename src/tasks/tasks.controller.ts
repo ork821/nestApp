@@ -1,9 +1,14 @@
-import {Controller} from '@nestjs/common';
+import {Controller, Get, Param, ParseIntPipe} from '@nestjs/common';
 import {TasksService} from './tasks.service';
+import {Task} from '../config/task.entity';
 
 @Controller('tasks')
 export class TasksController {
     constructor(private tasksService: TasksService) {
+    }
+    @Get('/:id')
+    getTaskById(@Param('id', ParseIntPipe) id: number): Promise<Task> {
+        return this.tasksService.getTaskById(id);
     }
 
     // @Get()
@@ -14,10 +19,6 @@ export class TasksController {
     //     return this.tasksService.getTasks();
     // }
     //
-    // @Get('/:id')
-    // getTaskById(@Param('id') id: string): Task {
-    //     return this.tasksService.getTaskById(id);
-    // }
     //
     // @Delete('/:id')
     // deleteTask(@Param('id') id: string): void {
