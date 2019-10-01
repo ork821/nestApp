@@ -5,8 +5,9 @@ import {AuthService} from './auth.service';
 @Controller('auth')
 export class AuthController {
     constructor(
-        private authService: AuthService
-    ) {}
+        private authService: AuthService,
+    ) {
+    }
 
     @Post('/signup')
     signUp(@Body(ValidationPipe) authCredentialsDto: AuthCredetialsDto): Promise<void> {
@@ -14,7 +15,7 @@ export class AuthController {
     }
 
     @Post('/signin')
-    signIn(@Body(ValidationPipe) authCredentialsDto: AuthCredetialsDto): Promise<void> {
+    signIn(@Body(ValidationPipe) authCredentialsDto: AuthCredetialsDto): Promise<{ accessToken: string }> {
         return this.authService.signIn(authCredentialsDto);
     }
 }
